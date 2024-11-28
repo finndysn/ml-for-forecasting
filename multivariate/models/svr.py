@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 
-def forecast_and_evaluate_svr(df_arg, exog, lag_value):
+def forecast_and_evaluate_svr(df_arg, exog, lag_value, train_size):
     """
     Function to perform time series forecasting using an SVR model,
     optimize hyperparameters using random search, and evaluate the model using backtesting.

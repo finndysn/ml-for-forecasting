@@ -11,7 +11,7 @@ from skforecast.model_selection_multiseries import backtesting_forecaster_multiv
 from skforecast.model_selection_multiseries import random_search_forecaster_multivariate
 
 
-def forecast_and_evaluate_knn(df_arg, exog, lag_value):
+def forecast_and_evaluate_knn(df_arg, exog, lag_value, train_size):
     """
     Function to perform time series forecasting using a KNeighborsRegressor,
     optimize hyperparameters using random search, and evaluate the model using backtesting.
