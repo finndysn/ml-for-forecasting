@@ -2,4 +2,4 @@ scikit-learn
 pandas
 numpy
 xgboost
-skforecast
+skforecast==0.13.0

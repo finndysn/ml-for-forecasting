@@ -9,7 +9,7 @@ from skforecast.ForecasterAutoregMultiVariate import ForecasterAutoregMultiVaria
 from skforecast.model_selection_multiseries import backtesting_forecaster_multivariate
 from skforecast.model_selection_multiseries import random_search_forecaster_multivariate
 
-def forecast_and_evaluate_decision_tree(df_arg, exog, lag_value):
+def forecast_and_evaluate_decision_tree(df_arg, exog, lag_value, train_size):
     """
     Function to perform time series forecasting using a DecisionTreeRegressor,
     optimize hyperparameters using random search, and evaluate the model using backtesting.
@@ -51,7 +51,7 @@ def forecast_and_evaluate_decision_tree(df_arg, exog, lag_value):
         exog=exog,
         n_iter=10,  
         metric='mean_squared_error', 
-        initial_train_size=int(len(df) * 0.8),  # Use 80% for training, rest for validation
+        initial_train_size=int(len(df) * train_size),  # Use 80% for training, rest for validation
         fixed_train_size=False,  
         return_best=True,  # Return the best parameter set
         random_state=123
@@ -75,14 +75,14 @@ def forecast_and_evaluate_decision_tree(df_arg, exog, lag_value):
         series=df,
         steps=10,
         metric='mean_squared_error',
-        initial_train_size=int(len(df) * 0.8),  # 80% train size
+        initial_train_size=int(len(df) * train_size),  # 80% train size
         levels=df.columns[-1],   
         exog=exog,
         fixed_train_size=False,  
         verbose=True
     )
 
-    y_true = df.iloc[int(len(df) * 0.8):, -1]  # The actual values from the test set
+    y_true = df.iloc[int(len(df) * train_size):, -1]  # The actual values from the test set
     mae = mean_absolute_error(y_true, predictions)
     mape_val = mean_absolute_percentage_error(y_true, predictions)
     mse = mean_squared_error(y_true, predictions)
