@@ -186,7 +186,7 @@ for split_directory, train_size in splits.items():
                         results_ridge["rmse"],
                         results_rf["rmse"],
                         results_lr["rmse"],
-                        results_gb["rms
+                        results_gb["rms"],
                         results_xgb["rmse"],
                         results_dt["rmse"],
                         results_lasso["rmse"],
